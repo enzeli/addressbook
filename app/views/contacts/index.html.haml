@@ -1,0 +1,49 @@
+#container{style: "width:800px;"}
+  #header{align: "center"} 
+    %h1 A simple address book
+
+  #content{style: "width:550px;height:800px;float:left;", align: "center"}
+    %h2 My contacts
+    %table
+      %tr
+        %th Name
+        %th Email
+        %th Address
+        %th Number
+        %th{colspan: "1"}
+      - @contacts.each do |contact|
+        %tr
+          %td= best_in_place contact, :name
+          %td= best_in_place contact, :email
+          %td= best_in_place contact, :address
+          %td= best_in_place contact, :number
+          %td= link_to 'Delete', contact_path(contact), method: :delete, data: { confirm: 'Are you sure?' } 
+    %p
+      = link_to 'All contacts', contacts_path
+
+  #sidebar{style: "width:250px;height:800px;float:left;"}
+    %h3 New Contact
+    = form_for :contact, url: contacts_path do |f|
+      %p
+      = f.label :name
+      = f.text_field :name
+      %p
+        = f.label :email
+        = f.text_field :email
+      %p
+        = f.label :address
+        = f.text_field :address
+      %p
+        = f.label :number
+        = f.text_field :number
+      %p
+        (All fields required)
+      %p
+        = f.submit
+    %h3 Search Contact
+    = form_tag contacts_path, :method => 'get' do
+      %p
+        = text_field_tag :search, params[:search]
+        = submit_tag "Search", :name => nil
+      %p
+        = link_to 'All my contacts', contacts_path
