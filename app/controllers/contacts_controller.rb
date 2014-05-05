@@ -6,12 +6,12 @@ class ContactsController < ApplicationController
 
   def create
     @contact = Contact.new(contact_params)
-    @contact[:number] = @contact[:number].gsub(/\D/, '')
-    
-    if @contact.save
-      redirect_to action: "index"
-    else
+    @contact[:number].gsub!(/\D/, '')
 
+    if @contact.save
+      redirect_to action: 'index', :notice =>['Contact saved']
+    else
+      redirect_to action: 'index', :notice =>@contact.errors.full_messages
     end
   end
 
@@ -20,7 +20,10 @@ class ContactsController < ApplicationController
   end
 
   def index
-    @contacts = Contact.search(params[:search])
+    @contacts = Contact.search(params[:search]).paginate(:per_page => 10, :page => params[:page])
+    if params[:contact]
+      @contact = Contact.new(contact_params)
+    end
   end
   
 

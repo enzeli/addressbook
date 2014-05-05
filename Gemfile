@@ -44,4 +44,4 @@ gem 'best_in_place', :git => 'https://github.com/aaronchi/best_in_place.git'
 
 gem 'jquery-rails'
 
-gem 'phony_rails'
+gem 'will_paginate', '~> 3.0'

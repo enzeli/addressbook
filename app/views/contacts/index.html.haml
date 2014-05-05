@@ -1,27 +1,29 @@
-#container{style: "width:800px;"}
+#container{style: "width:1000px;"}
   #header{align: "center"} 
     %h1 A simple address book
 
-  #content{style: "width:550px;height:800px;float:left;", align: "center"}
+  #content{style: "width:740px;float:left;", align: "center"}
     %h2 My contacts
-    %table
+    / %table{style: "table-layout:fixed;"}
+    %table.table.table-bordered
       %tr
-        %th Name
-        %th Email
-        %th Address
-        %th Number
-        %th{colspan: "1"}
+        %th{style: "width:100px;"}  Name
+        %th{style: "width:200px;"}  Email
+        %th{style: "width:200px;"}  Address
+        %th{style: "width:100px;"}  Number
+        %th{style: "width:40px;", colspan: "1"}
       - @contacts.each do |contact|
         %tr
           %td= best_in_place contact, :name
           %td= best_in_place contact, :email
           %td= best_in_place contact, :address
           %td= best_in_place contact, :number
-          %td= link_to 'Delete', contact_path(contact), method: :delete, data: { confirm: 'Are you sure?' } 
+          %td= link_to 'Delete', contact_path(contact), method: :delete, data: { confirm: 'Are you sure?' }
+    = will_paginate @contacts 
     %p
       = link_to 'All contacts', contacts_path
 
-  #sidebar{style: "width:250px;height:800px;float:left;"}
+  #sidebar{style: "width:240px;float:right;", align: "left"}
     %h3 New Contact
     = form_for :contact, url: contacts_path do |f|
       %p
@@ -36,14 +38,19 @@
       %p
         = f.label :number
         = f.text_field :number
-      %p
-        (All fields required)
+      %ul
+        - if params[:notice]
+          - params[:notice].to_a.each do |msg|
+            %li
+              = msg
+        - else
+          %li
+            All fields required
       %p
         = f.submit
+
     %h3 Search Contact
     = form_tag contacts_path, :method => 'get' do
       %p
         = text_field_tag :search, params[:search]
         = submit_tag "Search", :name => nil
-      %p
-        = link_to 'All my contacts', contacts_path
