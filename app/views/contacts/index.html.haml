@@ -1,29 +1,30 @@
-#container{style: "width:1000px;"}
-  #header{align: "center"} 
+
+%csstable.container
+  %csstable.header
     %h1 A simple address book
 
-  #content{style: "width:740px;float:left;", align: "center"}
+  %csstable.content
     %h2 My contacts
-    / %table{style: "table-layout:fixed;"}
-    %table.table.table-bordered
-      %tr
-        %th{style: "width:100px;"}  Name
-        %th{style: "width:200px;"}  Email
-        %th{style: "width:200px;"}  Address
-        %th{style: "width:100px;"}  Number
-        %th{style: "width:40px;", colspan: "1"}
+    #csstable.csstable
+      %p.firstLine
+        %span.col1 Name
+        %span.col2 Email
+        %span.col3 Address
+        %span.col4 Number
+        %span.col5 &nbsp
       - @contacts.each do |contact|
-        %tr
-          %td= best_in_place contact, :name
-          %td= best_in_place contact, :email
-          %td= best_in_place contact, :address
-          %td= best_in_place contact, :number
-          %td= link_to 'Delete', contact_path(contact), method: :delete, data: { confirm: 'Are you sure?' }
+        %p
+          %span.col1= best_in_place contact, :name
+          %span.col2= best_in_place contact, :email
+          %span.col3= best_in_place contact, :address
+          %span.col4= best_in_place contact, :number
+          %span.col5= link_to 'Delete', contact_path(contact), method: :delete, data: { confirm: 'Are you sure?' }
+    
     = will_paginate @contacts 
     %p
       = link_to 'All contacts', contacts_path
 
-  #sidebar{style: "width:240px;float:right;", align: "left"}
+  %csstable.sidebar
     %h3 New Contact
     = form_for :contact, url: contacts_path do |f|
       %p
