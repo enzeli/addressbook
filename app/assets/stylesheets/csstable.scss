@@ -2,11 +2,11 @@
 $content-width: 1000px;
 $table-width: 740px;
 $sidebar-width: 240px;
-$col-width-name: 100px;
-$col-width-email: 240px;
-$col-width-address: 240px;
-$col-width-number: 100px;
-$col-width-delete: 50px;
+$col-width-name: 90px;
+$col-width-email: 230px;
+$col-width-address: 230px;
+$col-width-number: 90px;
+$col-width-delete: 40px;
 
 .header{
 	text-align: center;
@@ -30,61 +30,58 @@ h2{
 .sidebar{
 	width: $sidebar-width;
 	float: left;
-	margin-left:20px;
+	margin-left:30px;
 	text-align: left;
 }
 
 #csstable {
   p {
     float: left;
-	clear: both;
+	  clear: both;
     width: 100%;
     margin: 0;
   }
   span {
     float: left;
-
-    &.col{
-      border-left: 1px solid #e3e7e7;
-      border-bottom: 1px solid #e3e7e7;
-    }
-
+    padding: 5px;
     &.col1 {
-      border-left: 1px solid #e3e7e7;
-      border-bottom: 1px solid #e3e7e7;
+      border-top: 1px solid #e3e7e7;
       min-width: $col-width-name;
       max-width: $col-width-name;
     }
     &.col2 {
-      border-left: 1px solid #e3e7e7;
-      border-bottom: 1px solid #e3e7e7;
+      word-break:break-all;
+      border-top: 1px solid #e3e7e7;
       min-width: $col-width-email;
       max-width: $col-width-email;
     }
     &.col3 {
-      border-left: 1px solid #e3e7e7;
-      border-bottom: 1px solid #e3e7e7;
+      border-top: 1px solid #e3e7e7;
       min-width: $col-width-address;
       max-width: $col-width-address;
     }
     &.col4 {
-      border-left: 1px solid #e3e7e7;
-      border-bottom: 1px solid #e3e7e7;
+      border-top: 1px solid #e3e7e7;
       min-width: $col-width-number;
       max-width: $col-width-number;
     }
     &.col5 {
-      border-left: 1px solid #e3e7e7;
-      border-bottom: 1px solid #e3e7e7;
-      border-right: 1px solid #e3e7e7;
+      border-top: 1px solid #e3e7e7;
       min-width: $col-width-delete;
+    }
+    &.lastLine { 
+      clear: both;
+      width: $table-width;
+      border-top: 3px solid #e3e7e7;
     }
   }
 
   p.firstLine span {
-    border-top: 1px solid #e3e7e7;
+    border-top: 3px solid #e3e7e7;
+    border-bottom: 2px solid #e3e7e7;
     font-size: 1.2em;
     font-weight:bold;
   }
+
 }
 

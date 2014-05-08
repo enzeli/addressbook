@@ -1,8 +1,7 @@
+%csstable.header
+  %h1 A simple address book
 
 %csstable.container
-  %csstable.header
-    %h1 A simple address book
-
   %csstable.content
     %h2 My contacts
     #csstable.csstable
@@ -19,6 +18,8 @@
           %span.col3= best_in_place contact, :address
           %span.col4= best_in_place contact, :number
           %span.col5= link_to 'Delete', contact_path(contact), method: :delete, data: { confirm: 'Are you sure?' }
+
+      %span.lastLine
     
     = will_paginate @contacts 
     %p
