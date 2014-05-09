@@ -16,7 +16,7 @@ class ContactsController < ApplicationController
   end
 
   def show
-    @contact = Contact.find(params[:id]) 
+    @contact = Contact.find(params[:id])
   end
 
   def index
@@ -25,7 +25,7 @@ class ContactsController < ApplicationController
       @contact = Contact.new(contact_params)
     end
   end
-  
+
 
   def update
     @contact = Contact.find(params[:id])
@@ -36,7 +36,7 @@ class ContactsController < ApplicationController
   def destroy
     @contact = Contact.find(params[:id])
     @contact.destroy
-   
+
     redirect_to contacts_path
   end
 
@@ -44,5 +44,5 @@ class ContactsController < ApplicationController
   private
     def contact_params
       params.require(:contact).permit(:name, :email, :address, :number)
-    end 
+    end
 end

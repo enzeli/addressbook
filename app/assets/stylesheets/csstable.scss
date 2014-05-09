@@ -41,39 +41,22 @@ h2{
     width: 100%;
     margin: 0;
   }
+
+	p:last-child {
+		clear: both;
+		width: $table-width;
+		border-top: 3px solid #e3e7e7;
+		margin-bottom: 10px;
+	}
+
   span {
     float: left;
     padding: 5px;
-    &.col1 {
-      border-top: 1px solid #e3e7e7;
-      min-width: $col-width-name;
-      max-width: $col-width-name;
-    }
-    &.col2 {
-      word-break:break-all;
-      border-top: 1px solid #e3e7e7;
-      min-width: $col-width-email;
-      max-width: $col-width-email;
-    }
-    &.col3 {
-      border-top: 1px solid #e3e7e7;
-      min-width: $col-width-address;
-      max-width: $col-width-address;
-    }
-    &.col4 {
-      border-top: 1px solid #e3e7e7;
-      min-width: $col-width-number;
-      max-width: $col-width-number;
-    }
-    &.col5 {
-      border-top: 1px solid #e3e7e7;
-      min-width: $col-width-delete;
-    }
-    &.lastLine { 
-      clear: both;
-      width: $table-width;
-      border-top: 3px solid #e3e7e7;
-    }
+		display: inline-block;
+		&.col  {
+			border-top: 1px solid #e3e7e7;
+		}
+
   }
 
   p.firstLine span {
@@ -84,4 +67,3 @@ h2{
   }
 
 }
-

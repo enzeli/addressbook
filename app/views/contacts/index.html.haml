@@ -6,26 +6,33 @@
     %h2 My contacts
     #csstable.csstable
       %p.firstLine
-        %span.col1 Name
-        %span.col2 Email
-        %span.col3 Address
-        %span.col4 Number
-        %span.col5 &nbsp
+        %span.col{:style=>"width:90px"} Name
+        %span.col{:style=>"width:230px"} Email
+        %span.col{:style=>"width:230px"} Address
+        %span.col{:style=>"width:90px"} Number
+        %span.col{:style=>"width:40px"} &nbsp
       - @contacts.each do |contact|
         %p
-          %span.col1= best_in_place contact, :name
-          %span.col2= best_in_place contact, :email
-          %span.col3= best_in_place contact, :address
-          %span.col4= best_in_place contact, :number
-          %span.col5= link_to 'Delete', contact_path(contact), method: :delete, data: { confirm: 'Are you sure?' }
+          %span.col{:style=>"width:90px"}= best_in_place contact, :name
+          %span.col{:style=>"width:230px;word-break:break-all;"}= best_in_place contact, :email, :type => :textarea
+          %span.col{:style=>"width:230px"}= best_in_place contact, :address, :type => :textarea
+          %span.col{:style=>"width:90px"}= best_in_place contact, :number
+          %span.col{:style=>"width:40px"}= link_to 'Delete', contact_path(contact), method: :delete, data: { confirm: 'Are you sure?' }
 
-      %span.lastLine
-    
-    = will_paginate @contacts 
+      / last line
+      %p
+
+    = will_paginate @contacts
     %p
       = link_to 'All contacts', contacts_path
 
   %csstable.sidebar
+    %h3 Search Contact
+    = form_tag contacts_path, :method => 'get' do
+      %p
+        = text_field_tag :search, params[:search]
+        = submit_tag "Search", :name => nil
+
     %h3 New Contact
     = form_for :contact, url: contacts_path do |f|
       %p
@@ -40,6 +47,8 @@
       %p
         = f.label :number
         = f.text_field :number
+      %p{:align=>"center"}
+        = f.submit
       %ul
         - if params[:notice]
           - params[:notice].to_a.each do |msg|
@@ -48,11 +57,3 @@
         - else
           %li
             All fields required
-      %p
-        = f.submit
-
-    %h3 Search Contact
-    = form_tag contacts_path, :method => 'get' do
-      %p
-        = text_field_tag :search, params[:search]
-        = submit_tag "Search", :name => nil
